@@ -72,8 +72,9 @@ names(finalDataset)<-gsub("gravity", "Gravity", names(finalDataset))
 ## Update datatype of the Subject column
 finalDataset$Subject <- as.factor(finalDataset$Subject)
 finalDataset <- data.table(finalDataset)
+write.table(finalDataset, file = "FirstTidyData.txt", row.names = FALSE)
 
 # Generate tidydata
-tidyData <- aggregate(. ~Subject + Activity, finalDataset, mean)
-tidyData <- tidyData[order(tidyData$Subject,tidyData$Activity),]
-write.table(tidyData, file = "Tidy.txt", row.names = FALSE)
+SecondTidyData <- aggregate(. ~Subject + Activity, finalDataset, mean)
+SecondTidyData <- SecondTidyData[order(SecondTidyData$Subject,SecondTidyData$Activity),]
+write.table(SecondTidyData, file = "SecondTidyData.txt", row.names = FALSE)
